@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 x_vals = list(range(1, 5000))
 y_vals = [num ** 3 for num in x_vals]
-y_vals5 = [num ** 4 for num in x_vals]
+y_vals5 = [num ** 3.2 for num in x_vals]
 
 # Стиль окна
 plt.style.use = 'bbplot'
@@ -26,7 +26,8 @@ ax.tick_params(axis='both', which='major', labelsize=14)
 
 
 # Диапазон по значениям
-ax.axis([0, 1100, 0, 11000000])
+# ax.axis([0, 1100, 0, 110000])
 
-
+# Авто-Сохранение графика
+# plt.savefig('Cube_numbers.png', bbox_inches='tight')
 plt.show()

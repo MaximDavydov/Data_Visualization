@@ -11,7 +11,7 @@ fig, ax = plt.subplots()
 # num_list_2 = list(range(0, 10000, 23))
 #
 # ax.plot(num_list_2, linewidth=3)
-ax.scatter(x_values, y_values, s=10, c=y_values, cmap=plt.cm.rainbow)
+ax.scatter(x_values, y_values, s=10, c=x_values, cmap=plt.cm.rainbow)
 
 
 # Set chart title and label axes.
@@ -28,5 +28,5 @@ ax.tick_params(axis='both', which='major', labelsize=14)
 # Назначение диапазона для каждой оси.
 ax.axis([0, 1100, 0, 1100000])
 
-plt.savefig('squares_scatter.png', bbox_inches='tight')
+# plt.savefig('squares_scatter.png', bbox_inches='tight')
 plt.show()
