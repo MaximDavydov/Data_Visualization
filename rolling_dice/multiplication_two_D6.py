@@ -6,13 +6,13 @@ from die import Die
 die1 = Die(6)
 die2 = Die(6)
 
-results = []
-for _ in range(1000):
-    results.append(die1.roll() * die2.roll())
+results = [die1.roll() * die2.roll() for _ in range(1000)]
+# for _ in range(1000):
+#     results.append(die1.roll() * die2.roll())
     
-frequence = []
-for side in range(1, (die1.num_sides * die2.num_sides) + 1):
-    frequence.append(results.count(side))
+frequence = [results.count(side) for side in range(1, (die1.num_sides * die2.num_sides) + 1)]
+# for side in range(1, (die1.num_sides * die2.num_sides) + 1):
+#     frequence.append(results.count(side))
 
 x_values = list(range(1, (die1.num_sides * die2.num_sides) + 1))
 # Создаем диаграмму
