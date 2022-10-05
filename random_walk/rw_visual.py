@@ -11,8 +11,8 @@ while True:
     rw.fill_walk()
 
     # Plot the points in the walk.
-    # plt.style.use('dark_background')
-    plt.style.use('classic')
+    plt.style.use('dark_background')
+    # plt.style.use('classic')
     # Ф-ия figsize управляет размером окна, dpi - разрешение экрана
     fix, ax = plt.subplots(figsize=(15, 7), dpi=103)
     point_numbers = range(rw.num_point)
