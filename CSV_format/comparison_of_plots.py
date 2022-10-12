@@ -50,6 +50,16 @@ plt.plot(dates, highs, c='red', alpha=0.3)
 plt.plot(dates, lows, c='blue', alpha=0.3)
 plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.05)
 
+# Get weather data for SanFr.
+filename = '/Users/maxim/python_work/Data_Visualization/CSV_format/data/San_Franc_2019.csv'
+date_index, high_index, low_index = 5, 7, 8
+highs, dates, lows = [], [], []
+get_weather_data(filename, highs, dates, lows, date_index, high_index, low_index)
+# Plot Sitka weather data.
+plt.plot(dates, highs, c='purple', alpha=1)
+plt.plot(dates, lows, c='black', alpha=1)
+plt.fill_between(dates, highs, lows, facecolor='purple', alpha=0.9)
+
 # Format plot.
 plt.title('Daily high and low temperatures – 2018\nSitka, AK and Death Valley, CA', fontsize=20)
 plt.xlabel('', fontsize=16)
