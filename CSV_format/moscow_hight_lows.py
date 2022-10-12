@@ -15,7 +15,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
-filename = '/Users/maxim/python_work/Data_Visualization/data/roma_2022_full.csv'
+filename = '/CSV_format/data/roma_2022_full.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
