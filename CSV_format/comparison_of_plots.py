@@ -6,12 +6,16 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 
-def get_weather_data(filename, highs, dates, lows, date_index, low_index, high_index):
+def get_weather_data(filename, highs, dates, lows):
     with open(filename) as f:
         reader = csv.reader(f)
         header_row = next(reader)
 
+        date_index, high_index, low_index = header_row.index("DATE"), header_row.index("TMAX"), header_row.index("TMIN")
+        place_name = ''
         for row in reader:
+            if not place_name:
+                place_name = row[header_row.index("NAME")]
             current_date = datetime.strptime(row[date_index], '%Y-%m-%d')
             try:
                 high, low = int(row[high_index]), int(row[low_index])
@@ -22,11 +26,12 @@ def get_weather_data(filename, highs, dates, lows, date_index, low_index, high_i
                 lows.append(((low - 32) * (5 / 9)))
                 dates.append(current_date)
 
+    return place_name
+
 # Get weather data for Death Valley.
 filename = '/Users/maxim/python_work/Data_Visualization/CSV_format/data/death_valley_2018_simple.csv'
-date_index, high_index, low_index = 2, 4, 5
 highs, dates, lows = [], [], []
-get_weather_data(filename, highs, dates, lows, date_index, high_index, low_index)
+place_name = get_weather_data(filename, highs, dates, lows)
 
 # Add Death Valley data to current plot.
 # Plot the high temperatures.
@@ -42,9 +47,8 @@ plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.15)
 
 # Get weather data for Sitka.
 filename = '/Users/maxim/python_work/Data_Visualization/CSV_format/data/sitka_weather_2018_simple.csv'
-date_index, high_index, low_index = 2, 5, 6
 highs, dates, lows = [], [], []
-get_weather_data(filename, highs, dates, lows, date_index, high_index, low_index)
+get_weather_data(filename, highs, dates, lows)
 # Plot Sitka weather data.
 plt.plot(dates, highs, c='red', alpha=0.3)
 plt.plot(dates, lows, c='blue', alpha=0.3)
@@ -52,16 +56,15 @@ plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.05)
 
 # Get weather data for SanFr.
 filename = '/Users/maxim/python_work/Data_Visualization/CSV_format/data/San_Franc_2019.csv'
-date_index, high_index, low_index = 5, 7, 8
 highs, dates, lows = [], [], []
-get_weather_data(filename, highs, dates, lows, date_index, high_index, low_index)
+get_weather_data(filename, highs, dates, lows)
 # Plot Sitka weather data.
 plt.plot(dates, highs, c='purple', alpha=1)
 plt.plot(dates, lows, c='black', alpha=1)
 plt.fill_between(dates, highs, lows, facecolor='purple', alpha=0.9)
 
 # Format plot.
-plt.title('Daily high and low temperatures – 2018\nSitka, AK and Death Valley, CA', fontsize=20)
+plt.title(f'Daily high and low temperatures – 2018\n{place_name}', fontsize=20)
 plt.xlabel('', fontsize=16)
 # Вывод метки дат по диагонали
 fig.autofmt_xdate()
