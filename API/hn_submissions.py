@@ -38,15 +38,15 @@ for submission_dict in submission_dicts:
     print(f"Discussion link: {submission_dict['hn_link']}")
     print(f"Comments: {submission_dict['comments']}")
 
-links, comments, labels = [dict['hn_link'] for dict in submission_dicts], [dict['comments'] for dict in submission_dicts], [f"<a href='{dict['hn_link']}'>{dict['title']}</a>" for dict in submission_dicts]
+title, comments, links = [dict['title'] for dict in submission_dicts], [dict['comments'] for dict in submission_dicts], [f"<a href='{dict['hn_link']}'>{dict['title'][:15]}</a>" for dict in submission_dicts]
 
 
 # Make visualization.
 data = [{
     'type': 'bar',
-    'x': labels,
+    'x': links,
     'y': comments,
-    # 'hovertext': labels,
+    'hovertext': title,
     'marker': {
         'color': 'rgb(60, 100, 150)',
         'line': {'width': 1.5, 'color': 'rgb(25, 25, 25)'}
